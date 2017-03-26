@@ -1,16 +1,3 @@
-# Copyright 2016 IBM All Rights Reserved.
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#      http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
 """
     The v1 Speech to Text service
     (https://www.ibm.com/watson/developercloud/speech-to-text.html)
@@ -54,9 +41,6 @@ def build_response(session_attributes, speechlet_response):
 # --------------- Functions that control the skill's behavior ------------------
 
 def get_welcome_response():
-    """ If we wanted to initialize the session to have some attributes we could
-        add those here
-        """
     
     session_attributes = {}
     card_title = "Welcome"
@@ -137,9 +121,6 @@ def analyze(intent, session):
 
     should_end_session = True
     
-    # Setting reprompt_text to None signifies that we do not want to reprompt
-    # the user. If the user does not respond or says something that is not
-    # understood, the session will end.
     return build_response(session_attributes, build_speechlet_response(intent['name'], speech_output, reprompt_text, should_end_session))
 
 
@@ -157,7 +138,7 @@ def on_launch(launch_request, session):
         """
     
     print("on_launch requestId=" + launch_request['requestId'] + ", sessionId=" + session['sessionId'])
-    # Dispatch to your skill's launch
+
     return get_welcome_response()
 
 
@@ -169,7 +150,6 @@ def on_intent(intent_request, session):
     intent = intent_request['intent']
     intent_name = intent_request['intent']['name']
     
-    # Dispatch to your skill's intent handlers
     if intent_name == "getResponse":
         return analyze(intent, session)
     elif intent_name == "AMAZON.HelpIntent":
@@ -187,22 +167,12 @@ def on_session_ended(session_ended_request, session):
         """
     print("on_session_ended requestId=" + session_ended_request['requestId'] +
           ", sessionId=" + session['sessionId'])
-# add cleanup logic here
-
 
 # --------------- Main handler ------------------
 
 def lambda_handler(event, context):
-    """ Route the incoming request based on type (LaunchRequest, IntentRequest,
-        etc.) The JSON body of the request is provided in the event parameter.
-        """
     print("event.session.application.applicationId=" + event['session']['application']['applicationId'])
     
-    """
-        Uncomment this if statement and populate with your skill's application ID to
-        prevent someone else from configuring a skill that sends requests to this
-        function.
-        """
     # if (event['session']['application']['applicationId'] !=
     #         "amzn1.echo-sdk-ams.app.[unique-value-here]"):
     #     raise ValueError("Invalid Application ID")
