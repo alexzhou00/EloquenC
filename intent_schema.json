@@ -1,0 +1,22 @@
+{
+  "intents": [
+    {
+      "intent": "getResponse",
+      "slots": [
+        {
+          "name" : "Text",
+          "type": "AMAZON.LITERAL"
+        }
+      ]
+    },
+    {
+      "intent": "AMAZON.HelpIntent"
+    },
+    {
+      "intent": "AMAZON.StopIntent"
+    },
+    {
+      "intent": "AMAZON.CancelIntent"
+    }
+  ]
+}

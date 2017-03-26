@@ -1,0 +1,10 @@
+getResponse Tell me how this sounds {I like to eat cake|Text}
+getResponse Tell me how this sounds {I want to live my life|Text}
+getResponse Tell me how this sounds {How are you doing today|Text}
+getResponse Tell me how this sounds {I do not like the sound of that|Text}
+getResponse Tell me how this sounds {I want to eat that|Text}
+getResponse Tell me how this sounds {That was mine|Text}
+getResponse How this sounds {I love you|Text}
+getResponse How this is {I hate you|Text}
+getResponse How is this {I like that computer|Text}
+getResponse How does this sound {I like that computer|Text}
